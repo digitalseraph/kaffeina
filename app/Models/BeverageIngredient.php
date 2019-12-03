@@ -9,13 +9,20 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 class BeverageIngredient extends Pivot
 {
     /**
+     * Indicates if the IDs are auto-incrementing.
+     *
+     * @var bool
+     */
+    public $incrementing = true;
+
+    /**
      * beverage
      *
      * The beverage that contains the ingredient
      *
      * @return Beverage
      */
-    public function beverage(): Beverage
+    public function beverage()
     {
         return Beverage::find($this->beverage_id);
     }
@@ -27,7 +34,7 @@ class BeverageIngredient extends Pivot
      *
      * @return Ingredient
      */
-    public function ingredient(): Ingredient
+    public function ingredient()
     {
         return Ingredient::find($this->ingredient_id);
     }
@@ -39,7 +46,7 @@ class BeverageIngredient extends Pivot
      *
      * @return int
      */
-    public function servings(): int
+    public function servings()
     {
         return $this->ingredient_amount;
     }

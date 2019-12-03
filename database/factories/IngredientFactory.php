@@ -5,14 +5,7 @@
 use App\Models\Ingredient;
 use Faker\Generator as Faker;
 
-$factory->define(Ingredient::class, function (Faker $faker) {
-    return [
-        //
-    ];
-});
-
-
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(App\Models\Ingredient::class, function (Faker $faker) {
     $ingredient = [
         'name' => $faker->words(
             $nb = $faker->numberBetween(1,3),

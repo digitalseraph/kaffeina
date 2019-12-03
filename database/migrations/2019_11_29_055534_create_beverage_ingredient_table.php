@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBeverageIngredientsTable extends Migration
+class CreateBeverageIngredientTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class CreateBeverageIngredientsTable extends Migration
     public function up()
     {
         Schema::enableForeignKeyConstraints();
-        Schema::create('beverage_ingredients', function (Blueprint $table) {
+        Schema::create('beverage_ingredient', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('beverage_id');
             $table->unsignedBigInteger('ingredient_id');
@@ -38,13 +38,13 @@ class CreateBeverageIngredientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('beverage_ingredients');
+        Schema::dropIfExists('beverage_ingredient');
         Schema::disableForeignKeyConstraints();
-        Schema::table('ingredient_beverage', function (Blueprint $table) {
+        Schema::table('beverage_ingredient', function (Blueprint $table) {
             $table->dropForeign(['beverage_id']);
             $table->dropForeign(['ingredient_id']);
         });
 
-        Schema::dropIfExists('beverage_ingredients');
+        Schema::dropIfExists('beverage_ingredient');
     }
 }

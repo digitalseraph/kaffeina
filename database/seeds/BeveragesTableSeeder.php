@@ -38,7 +38,8 @@ class BeveragesTableSeeder extends Seeder
             'description' => 'An amazing shot of get up and go! Each 2 fl. oz. container has 200mg of caffeine to get you going.',
         ]);
 
-        factory(App\Models\Beverage::class)->create();
-
+        factory(App\Models\Beverage::class, 10)->create()->each(function ($beverage) {
+            $beverage->ingredients()->save(factory(App\Models\Ingredient::class)->create());
+        });
     }
 }

@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 class Ingredient extends Model
 {
 
+    protected $fillable = ['name', 'caffeine_amount'];
+
     /**
      * beverages
      *
@@ -15,14 +17,8 @@ class Ingredient extends Model
      *
      * @return BelongsToMany
      */
-    public function beverages(): BelongsToMany
+    public function beverages()
     {
-        return $this->belongsToMany(
-                        'App\Models\Beverage',
-                        'beverage_ingredients',
-                        'id',
-                        'ingredient_id')
-                    ->using('App\Models\BeverageIngredient')
-                    ->withPivot('ingredient_amount');
+        return $this->belongsToMany('App\Models\Beverage')->using('App\Models\BeverageIngredient');
     }
 }
