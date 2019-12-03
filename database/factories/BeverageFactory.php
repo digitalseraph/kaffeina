@@ -3,7 +3,6 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\Models\Beverage;
-use App\Models\Ingredient;
 use Faker\Generator as Faker;
 
 $factory->define(App\Models\Beverage::class, function (Faker $faker) {
@@ -15,7 +14,9 @@ $factory->define(App\Models\Beverage::class, function (Faker $faker) {
         'description' => $faker->sentence(
             $nbWords = 6,
             $variableNbWords = true
-        )
+        ),
+        'caffeine_amount' => $faker->numberBetween(200, 500),
+        'servings' => $faker->numberBetween(1,2),
     ];
 
     return $beverage;

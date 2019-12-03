@@ -19,9 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Ingredients
-Route::resource('ingredients', 'IngredientController');
-
 // Beverages
 Route::resource('beverages', 'BeverageController');
 

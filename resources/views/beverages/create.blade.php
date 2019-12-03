@@ -6,10 +6,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <h2>Add Ingredient</h2>
+                    <h2>Add Beverage</h2>
                 </div>
                 <div class="card-body">
-                    <h4 class="card-title">Ingredient</h4>
+                    <h4 class="card-title">Beverage</h4>
                     <p class="card-text">
                         @if ($errors->any())
                             <div class="alert alert-danger">
@@ -21,8 +21,6 @@
                             </div>
                         @endif
 
-
-
                         <form method="post" action="{{ route('beverages.store') }}">
 
                             @csrf
@@ -33,12 +31,24 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="description">Caffeine Amount:</label>
+                                <label for="description">Description:</label>
                                 <textarea" class="form-control" name="description" id="description">
                                 </textarea>
                             </div>
 
-                            <button type="submit" class="btn btn-primary">Create Ingredient</button>
+                            <div class="form-group">
+                                <label for="description">Caffeine Amount:</label>
+                                <input type="number" class="form-control" name="caffeine_amount" id="caffeine_amount" />
+                                </textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Caffeine Amount:</label>
+                                <input type="number" class="form-control" name="servings" id="servings" />
+                                </textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Create Beverage</button>
                         </form>
                     </p>
                 </div>

@@ -21,15 +21,19 @@
                     <td>ID</td>
                     <td>Name</td>
                     <td>Description</td>
+                    <td>Caffeine Amount</td>
+                    <td>Servings</td>
                     <td colspan="2">Action</td>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($beverages as $beverage)
                     <tr>
-                        <td>{{$beverage->id}}</td>
-                        <td>{{$beverage->name}}</td>
-                        <td>{{$beverage->description}}</td>
+                        <td>{{$beverage->id }}</td>
+                        <td>{{$beverage->name }}</td>
+                        <td>{{$beverage->description }}</td>
+                        <td>{{$beverage->caffeine_amount }}</td>
+                        <td>{{$beverage->servings }}</td>
                         <td><a href="{{ route('beverages.edit', $beverage->id)}}" class="btn btn-sm btn-primary">Edit</a></td>
                         <td>
                             <form action="{{ route('beverages.destroy', $beverage->id)}}" method="post">

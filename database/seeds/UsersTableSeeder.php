@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt(env('KAFFEINA_TEST_USER_PASSWORD'))
         ]);
 
-        factory(App\Models\User::class, 20)->create()->each(function($user) {
+        factory(App\Models\User::class, 10)->create()->each(function($user) {
             $log = factory(App\Models\BeverageLog::class)->make();
 
             $user->beverageLogs()->save($log);
