@@ -22,6 +22,9 @@
 </head>
 <body>
     <div id="app">
+        @component('layouts.snippets.nav.navbar')
+
+        @endcomponent
 
         <main class="py-4">
             @yield('content')
