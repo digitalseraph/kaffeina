@@ -37,5 +37,7 @@ class IngredientsTableSeeder extends Seeder
             'name' => '5 Hour Energy',
             'caffeine_amount' => 200,
         ]);
+
+        factory(App\Models\Ingredient::class, 10)->create();
     }
 }

@@ -14,9 +14,9 @@ class Beverage extends Model
      *
      * @return BelongsToMany
      */
-    public function ingredients(): BelongsToMany
+    public function ingredients()
     {
-        return $this->belongsToMany('App\Models\Ingredient', 'beverage_ingredients', 'id', 'beverage_id');
+        return $this->belongsToMany('App\Models\Ingredient')->using('App\Models\BeverageIngredient');
     }
 
     /**
@@ -26,7 +26,8 @@ class Beverage extends Model
      *
      * @return int
      */
-    public function totalCaffeine(): int {
+    public function totalCaffeine()
+    {
         $totalCaffeine = 0;
         foreach($this->ingredients as $ingredient) {
             $totalCaffeine += $ingredient->caffeineAmount;
