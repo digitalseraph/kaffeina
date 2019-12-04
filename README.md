@@ -4,6 +4,10 @@
 
 This is a sample application created for MJ Freeway.
 
+## Versioning
+
+v1.0.0 release is now available!
+
 ## About
 
 Welcome to Kaffeina! With this application you may track your caffeine intake from various drinks and beverages. 
@@ -30,8 +34,9 @@ It's this simple:
 * Polymorphic relationships and utility functions for users, beverages, and log entries
 * Vue Bootstrap DateTime Picker component, customized to show a more complete Vue component
 * Custom Webpack config with versioning, browsersync, autoloading, and sourcemaps
-* Progess bar indicating percentage towards maximum caffeine amount
+* Progess bar indicating percentage towards maximum caffeine amount located directly under top navigation bar
 * Mobile and responsive
+* Color-coded beverage index page indicating how high the caffeine content is for a beverage
 * User cannot add log entries that would take them over their maximum caffeine amount
 * Caffiene intake allows log entries to fall off after a specific time, so that the current intake is calculated only from log entries within a specified time. This is easily set in either `config/kaffeina.php` or `.env` as `kaffeina.settings.caffeine_expiration_time` and `KAFFEINA_CAFFEINE_EXPIRATION_TIME`, respectively. A default of 6 hours ensures user safety, but 4 hours is used in .env as a standard.
 
@@ -67,11 +72,13 @@ It's this simple:
         * `KAFFEINA_DEV_SEED_BEVERAGE_DEFAULTS=TRUE`        # Seed predefined beverages
         * `KAFFEINA_DEV_SEED_BEVERAGE_AMOUNT=0`             # Additional random beverages
         * `KAFFEINA_DEV_SEED_USER_AMOUNT=0`                 # Additional random users
-3. Generate a new application key: `php artisan key:generate`
-4. Create a new database for Kaffeina (named kaffeina or whatever you put in .env)
-5. Install PHP dependencies: `composer install`
-6. Install Node dependencies: `npm install`
-7. Run the live server: `npm run watch`
+3. Create a new database for Kaffeina (named kaffeina or whatever you put in .env)
+4. Install PHP dependencies: `composer install`
+5. Generate a new application key: `php artisan key:generate`
+6. Run migrations and seed the database: `php artisan migrate --seed`
+7. From the host computer (not in homestead), run:
+    1. Install Node dependencies: `npm install`
+    2. Run the live server: `npm run watch`
 
 At this point, you should have an open browser with the website open. You can either register a new user, or use the default user listed in your `.env`
 
