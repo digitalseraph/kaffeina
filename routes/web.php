@@ -23,5 +23,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('beverages', 'BeverageController');
 
 // Beverage Logs
+Route::resource('beverage_logs', 'BeverageLogController');
 
 // Users
