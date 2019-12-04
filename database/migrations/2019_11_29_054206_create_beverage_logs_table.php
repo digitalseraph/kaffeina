@@ -18,7 +18,7 @@ class CreateBeverageLogsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('beverage_id');
-            $table->dateTime('consumed_at');
+            $table->dateTime('consumed_at', 0)->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamps();
 
             $table->foreign('user_id')
