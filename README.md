@@ -1,4 +1,4 @@
-<p align="center"><img src="./public/assets/img/logo_400x144.png" width="400"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/digitalseraph/kaffeina/master/public/img/logo_400x144.png" width="400"></p>
 
 # Kaffeina
 
