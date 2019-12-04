@@ -23,8 +23,17 @@
 <body>
     <div id="app">
         @component('layouts.snippets.nav.navbar')
-
         @endcomponent
+
+        @guest
+        @else
+        <div class="progress">
+            <div class="progress-bar" role="progressbar"
+                 style="width: {{ Auth::user()->percentageAllowed() }}%;"
+                 aria-valuenow="{{ Auth::user()->percentageAllowed() }}"
+                 aria-valuemin="0" aria-valuemax="100">{{ Auth::user()->percentageAllowed() }}%</div>
+        </div>
+        @endguest
 
         <main class="py-4">
             @yield('content')
@@ -33,8 +42,10 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ mix('/js/manifest.js') }}" ></script>
-    <script src="{{ mix('/js/vendor.js') }}" ></script>
-    <script src="{{ mix('/js/app.js') }}" ></script>
+    @component('layouts.snippets.footer.scripts')
+            <script src="{{ mix('/js/manifest.js') }}" ></script>
+            <script src="{{ mix('/js/vendor.js') }}" ></script>
+            <script src="{{ mix('/js/app.js') }}" ></script>
+    @endcomponent
 </body>
 </html>

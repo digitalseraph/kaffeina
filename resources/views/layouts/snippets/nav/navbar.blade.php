@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
     <div class="container">
         <a class="navbar-brand" href="{{ url('/') }}">
+            <img src="{{ asset('img/' . config('kaffeina.design.logo.nav')) }}" width="38" height="30" class="d-inline-block align-top" alt="">
             {{ config('app.name', 'Laravel') }}
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -11,10 +12,25 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('beverages.index') }}">Beverages</a>
+                    <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
+                @guest
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beverages.index') }}">Beverages</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('beverage_logs.index') }}">Beverage Logs</a>
+                    </li>
+                @endguest
             </ul>
 
+            @guest
+            @else
+                <span class="navbar-text">
+                    Caffeine Intake:  {{ Auth::user()->currentCaffeineAmount() }}/{{ Auth::user()->max_caffeine_amount }} mg <small>(current / max)</small>
+                </span>
+                @endguest
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->

@@ -4,24 +4,17 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">
-                    <h2>Update Beverage</h2>
-                </div>
-                <div class="card-body">
-                    <h4 class="card-title">Beverage #{{ $beverage->id }}</h4>
-                    <p class="card-text">
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
+            <form method="post" action="{{ route('beverages.update', $beverage->id) }}">
 
-                        <form method="post" action="{{ route('beverages.update', $beverage->id) }}">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Update Beverage</h2>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">Beverage #{{ $beverage->id }}</h4>
+                        <p class="card-text">
+                            @component('layouts.snippets.alerts.error-list')
+                            @endcomponent
 
                             @csrf
                             @method('PATCH')
@@ -48,12 +41,21 @@
                                 <input type="number" class="form-control" name="servings" id="servings" value="{{ $beverage->servings }}" />
                                 </textarea>
                             </div>
-
-                            <button type="submit" class="btn btn-primary">Update Beverage</button>
-                        </form>
-                    </p>
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col text-right">
+                                    <button type="submit" class="btn btn-primary btn-block">Update Beverage</button>
+                                    <a href={{ route('beverages.index') }} role="button" class="btn btn-danger btn-block">Cancel</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+
+            </form>
         </div>
     </div>
 </div>
