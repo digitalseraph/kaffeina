@@ -12,7 +12,7 @@
             @component('layouts.snippets.alerts.session-alert')
             @endcomponent
 
-            <table class="table table-striped table-hover table-responsive">
+            <table class="table table-striped table-hover">
                 <thead class="thead">
                     <tr>
                         <th scope="col">#</td>
