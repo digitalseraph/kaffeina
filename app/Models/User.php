@@ -45,8 +45,50 @@ class User extends Authenticatable
      *
      * @return HasMany
      */
-    public function beverageLogs(): HasMany
+    public function beverageLogs()
     {
         return $this->hasMany('App\Models\BeverageLog');
+    }
+
+
+    public function currentCaffeineAmount()
+    {
+        $caffeine_expiration_time = config('kaffeina.settings.caffeine_expiration_time');
+        $beverage_logs = $this->beverageLogs->where('consumed_at', ">", '-' . $caffeine_expiration_time . 'hours');
+
+        $current_caffeine_amount = 0;
+        foreach ($beverage_logs as $beverage_log) {
+            $current_caffeine_amount += $beverage_log->totalCaffeineAmount();
+        }
+
+        return $current_caffeine_amount;
+    }
+
+    public function lifetimeCaffeineAmount()
+    {
+        $beverage_logs = $this->beverageLogs;
+
+        $lifetime_caffeine_amount = 0;
+        foreach ($beverage_logs as $beverage_log) {
+            $lifetime_caffeine_amount += $beverage_log->totalCaffeineAmount();
+        }
+
+        return $lifetime_caffeine_amount;
+    }
+
+    public function allowedCaffeineAmount()
+    {
+        $currentCaffeine = $this->currentCaffeineAmount();
+        $totalCaffeineAllowed = $this->max_caffeine_amount;
+
+        return $totalCaffeineAllowed - $currentCaffeine;
+    }
+
+    public function percentageAllowed()
+    {
+        $currentCaffeine = $this->currentCaffeineAmount();
+        $totalCaffeineAllowed = $this->max_caffeine_amount;
+
+        return ($currentCaffeine / $totalCaffeineAllowed) * 100;
     }
 }
