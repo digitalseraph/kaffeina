@@ -41,10 +41,12 @@ class BeverageController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
+            'caffeine_amount' => 'required|numeric',
+            'servings' => 'required|numeric',
         ]);
         $beverage = Beverage::create($validatedData);
 
-        return redirect('/beverages')->with('success', 'Beverage is successfully saved');
+        return redirect('/beverages')->with('success', 'Beverage has been successfully saved');
     }
 
     /**
@@ -81,6 +83,8 @@ class BeverageController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required',
+            'caffeine_amount' => 'required|numeric',
+            'servings' => 'required|numeric',
         ]);
         $beverage->update($validatedData);
 

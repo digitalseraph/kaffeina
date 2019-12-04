@@ -3,36 +3,29 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Beverage extends Model
 {
     /**
-     * ingredients
+     * The attributes that are mass assignable.
      *
-     * All the ingredients that this beverage includes
-     *
-     * @return BelongsToMany
+     * @var array
      */
-    public function ingredients()
-    {
-        return $this->belongsToMany('App\Models\Ingredient')->using('App\Models\BeverageIngredient');
-    }
+    protected $fillable = ['name', 'description', 'caffeine_amount', 'servings'];
 
     /**
-     * totalCaffeine
+     * beverageLogs
      *
-     * The total amount of caffeine contained in this beverage
+     * The logs that contain records of the user's consumption history
      *
-     * @return int
+     * @return HasMany
      */
-    public function totalCaffeine()
+    public function beverageLogs()
     {
-        $totalCaffeine = 0;
-        foreach($this->ingredients as $ingredient) {
-            $totalCaffeine += $ingredient->caffeineAmount;
-        }
+        return $this->hasMany('App\Models\BeverageLog');
+    }
 
-        return $totalCaffeine;
+    public function totalCaffeineAmount() {
+        return $this->caffeine_amount * $this->servings;
     }
 }

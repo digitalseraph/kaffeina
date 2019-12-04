@@ -23,6 +23,12 @@ mix.js('resources/js/app.js', 'public/js')
         proxy: proxy_url
     });
 
+mix.autoload({
+    'jquery': ['$', 'window.jQuery', 'jQuery'],
+    'vue': ['Vue', 'window.Vue'],
+    'moment': ['moment', 'window.moment'],
+})
+
 if (mix.inProduction()) {
     mix.version();
 }

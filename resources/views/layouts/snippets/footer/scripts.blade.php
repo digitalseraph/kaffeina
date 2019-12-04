@@ -1,0 +1,4 @@
+{{-- Scripts --}}
+{{ $prescripts='' }}
+{{ $slot }}
+{{ $postscripts='' }}

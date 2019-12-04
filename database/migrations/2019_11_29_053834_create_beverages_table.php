@@ -17,6 +17,8 @@ class CreateBeveragesTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->text('description');
+            $table->integer('caffeine_amount');
+            $table->integer('servings');
             $table->timestamps();
         });
     }
